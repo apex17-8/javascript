@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DOM practice </title>
+    <link rel="stylesheet" href="DOM manipulation.css" />
+</head>
+<body>
+  <header>
+    <h1>My DOM world</h1>
+    <p>Document Object manipulation involves having different files;HTML, CSS, JS. <br>
+        With DOM manipulation, we can create and modify HTML elements dynamically.</p> 
+    <p> My first example is about creating a button that onclick adds a vegetable to a shopping cart </p>
+    <p> </p>
+  </header>
+
+  <main>
+    <section>
+        <br/>
+      <p id="status">Click here to chose a vegetable</p>
+      <button type="button" onclick="awakenPower()">Awaken Power</button>
+    </section>
+    <br/>
+
+    <section>
+      <button type="button" onclick="toggleCharacter()">Summon/Desummon Hero</button>
+      <div id="hero-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Powered by Anime, Code & Coffee 🍜</p>
+    <p>Join us for epic adventures!</p>
+  </footer>
+  <script src="DOM manipulation.js"></script>
+</body>
+</html>

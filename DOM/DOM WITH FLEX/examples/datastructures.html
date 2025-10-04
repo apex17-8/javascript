@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Structures – Veggie Cart</title>
+</head>
+<body>
+<h2>Vegetable Inventory</h2>
+<p id="info"></p>
+
+<script>
+const veggies = [
+  { name: "Tomato", stock: 20 },
+  { name: "Onion", stock: 15 },
+  { name: "Carrot", stock: 10 }
+];
+
+// Object & Array
+const firstVeggie = veggies[0].name;
+
+// Date
+const date = new Date();
+
+// Set (unique)
+const veggieSet = new Set(["Tomato", "Carrot", "Tomato"]);
+
+// Map (key-value)
+const prices = new Map([
+  ["Tomato", 80],
+  ["Carrot", 60],
+  ["Onion", 70]
+]);
+
+document.getElementById("info").innerHTML = `
+  Today: ${date.toDateString()}<br>
+  Total veggies: ${veggies.length}<br>
+  First veggie: ${firstVeggie}<br>
+  Unique veggies: ${[...veggieSet].join(", ")}<br>
+  Tomato price: ${prices.get("Tomato")} KES
+`;
+</script>
+</body>
+</html>

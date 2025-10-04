@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Events</title>
+</head>
+<body>
+  <form id="orderForm">
+    <label>Customer Name:</label>
+    <input type="text" id="name" placeholder="Enter your name" title="Customer Name" /><br><br>
+    <label for="vegetable">Vegetable:</label>
+    <select id="vegetable">
+      <option>Tomato</option>
+      <option>Spinach</option>
+      <option>Carrot</option>
+    </select>
+    <button type="submit">Order</button>
+  </form>
+  <p id="message"></p>
+
+  <script>
+    const form = document.getElementById("orderForm");
+    const nameInput = document.getElementById("name");
+    const message = document.getElementById("message");
+
+    nameInput.addEventListener("focus", () => nameInput.style.backgroundColor = "lightyellow");
+    nameInput.addEventListener("blur", () => nameInput.style.backgroundColor = "");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      message.textContent = "Order placed successfully!";
+    });
+  </script>
+</body>
+</html>

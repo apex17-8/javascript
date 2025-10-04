@@ -1,0 +1,51 @@
+<!--fitting images in a grid format-->
+<!--using fruits in an array in a grid format-->
+<html>
+<head>
+  <title>Gallery Practice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #c55894c5;
+    
+    }
+
+    .pictures {
+    grid-template-columns:10fr 10fr 10fr;
+    
+    display: grid;
+    gap: 10px;
+    color: crimson;
+    justify-content: stretch;
+    align-content: stretch; }
+
+    .pictures img {
+      width: 50%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      padding: 10%;
+
+    }
+
+
+</style>
+</head>
+<body>
+  <!-- comment to display images  in my images folder in a grid format -->
+  <h1>Gallery</h1>
+  <div class="pictures">
+        <!-- get images from my images folder -->
+        <img src="images/past1.jpeg" alt="past1">
+        <img src="images/past2.jpeg" alt="past2">
+        <img src="images/past3.jpeg" alt="past3">
+        <img src="images/past4.jpeg" alt="past4">
+        <img src="images/past5.jpeg" alt="past5>
+        <img src="images/ocean.jpg" alt="ocean">
+    
+  </div>
+</body>
+
+</html>

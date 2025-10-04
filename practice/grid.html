@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid + Array Practice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 50px;
+      background-color: #08ff1c;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+        color: #333;
+    }
+    .controls {
+      margin-bottom: 15px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+      color: crimson;
+    }
+
+    .item {
+      background: lightblue;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gallery Practice</h1>
+  
+  <div class="controls">
+    <button onclick="showAll()">Show All</button>
+    <button onclick="filterCategory('Fruit')">Fruits</button>
+    <button onclick="filterCategory('Veg')">Vegetables</button>
+    <button onclick="sortItems()">Sort A-Z</button>
+    
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <script>
+    // Array of objects (practice array methods here)
+    const items = [
+      { name: "Apple", category: "Fruit" },
+      { name: "Carrot", category: "Veg" },
+      { name: "Banana", category: "Fruit" },
+      { name: "Potato", category: "Veg" },
+      { name: "Mango", category: "Fruit" }
+    ];
+
+    let currentItems = [...items];
+
+    function renderGrid(data) {
+      const grid = document.getElementById("grid");
+      grid.innerHTML = "";
+      data.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.textContent = item.name;
+        grid.appendChild(div);
+      });
+    }
+
+    function showAll() {
+      currentItems = [...items];
+      renderGrid(currentItems);
+    }
+
+    function filterCategory(cat) {
+      currentItems = items.filter(item => item.category === cat);
+      renderGrid(currentItems);
+    }
+
+    function sortItems() {
+      currentItems = [...currentItems].sort((a, b) => a.name.localeCompare(b.name));
+      renderGrid(currentItems);
+    }
+
+    // Initial render
+    renderGrid(items);
+  </script>
+</body>
+</html>

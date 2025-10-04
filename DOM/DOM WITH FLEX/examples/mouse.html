@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vegetable Highlight</title>
+  <style>
+    li { cursor: pointer; }
+    .highlight { background: lightgreen; }
+  </style>
+</head>
+<body>
+  <h2>Hover over a vegetable</h2>
+  <ul id="veggies">
+    <li>Spinach</li>
+    <li>Cabbage</li>
+    <li>Kale</li>
+  </ul>
+
+  <script>
+    const items = document.querySelectorAll("#veggies li");
+
+    items.forEach(item => {
+      item.addEventListener("mouseover", () => item.classList.add("highlight"));
+      item.addEventListener("mouseout", () => item.classList.remove("highlight"));
+    });
+  </script>
+</body>
+</html>

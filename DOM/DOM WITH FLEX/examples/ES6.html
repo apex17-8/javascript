@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ES6 – Veggie List</title>
+</head>
+<body>
+<h2>Available Vegetables</h2>
+<ul id="list"></ul>
+
+<script>
+// const & let
+const vegetables = ["Tomato", "Onion", "Carrot", "Spinach"];
+
+// arrow function + map
+const veggieList = vegetables.map(v => `<li>${v}</li>`).join("");
+document.getElementById("list").innerHTML = veggieList;
+
+// destructuring
+const [first, second] = vegetables;
+console.log(`First two: ${first}, ${second}`);
+
+// spread operator
+const moreVeggies = [...vegetables, "Kale", "Broccoli"];
+console.log(moreVeggies);
+
+// filter
+const greenVeggies = moreVeggies.filter(v => v !== "Onion");
+console.log("Green veggies:", greenVeggies);
+</script>
+</body>
+</html>

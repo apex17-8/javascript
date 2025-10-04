@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove/Replace Vegetables</title>
+</head>
+<body>
+  <ul id="veggieList">
+    <li>Tomato</li>
+    <li>Onion</li>
+    <li>Carrot</li>
+  </ul>
+  <button id="removeBtn">Remove Last</button>
+  <button id="replaceBtn">Replace First</button>
+
+  <script>
+    const list = document.getElementById("veggieList");
+
+    document.getElementById("removeBtn").addEventListener("click", () => {
+      if (list.lastChild) list.removeChild(list.lastChild);
+    });
+
+    document.getElementById("replaceBtn").addEventListener("click", () => {
+      const newItem = document.createElement("li");
+      newItem.textContent = "Broccoli (replaced)";
+      if (list.firstChild) list.replaceChild(newItem, list.firstChild);
+    });
+  </script>
+</body>
+</html>

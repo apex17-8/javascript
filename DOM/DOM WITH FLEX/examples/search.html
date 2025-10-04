@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Vegetables</title>
+</head>
+<body>
+  <input type="text" id="searchBox" placeholder="Type to filter..." />
+  <ul id="veggies">
+    <li>Tomato</li>
+    <li>Onion</li>
+    <li>Potato</li>
+    <li>Carrot</li>
+    <li>Broccoli</li>
+  </ul>
+
+  <script>
+    const search = document.getElementById("searchBox");
+    const veggies = document.getElementsByTagName("li");
+
+    search.addEventListener("keyup", () => {
+      const value = search.value.toLowerCase();
+      for (let v of veggies) {
+        v.style.display = v.textContent.toLowerCase().includes(value) ? "" : "none";
+      }
+    });
+  </script>
+</body>
+</html>

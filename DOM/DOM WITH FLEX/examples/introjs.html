@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intro to JavaScript – Veggie Cart</title>
+</head>
+<body>
+<h2>Vegetable Price Checker</h2>
+<p id="output"></p>
+
+<script>
+// variables & data types
+let vegetable = "Tomato";
+let quantity = 5;
+let pricePerKg = 80; // KES
+let total = quantity * pricePerKg;
+
+// conditional & operators
+if (total > 300) {
+  document.getElementById("output").innerHTML = `You bought many ${vegetable}s! Total: KES ${total}`;
+} else {
+  document.getElementById("output").innerHTML = `You bought few ${vegetable}s. Total: KES ${total}`;
+}
+
+// function
+function discount(total) {
+  return total > 500 ? total * 0.9 : total;
+}
+console.log("Discounted total:", discount(total));
+</script>
+</body>
+</html>

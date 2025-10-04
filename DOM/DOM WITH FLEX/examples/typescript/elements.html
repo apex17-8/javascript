@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM – Veggie Cart</title>
+</head>
+<body>
+<h2>My Cart</h2>
+<ul id="cart"></ul>
+<input id="veggieInput" placeholder="Add vegetable..." />
+<button id="addBtn">Add</button>
+
+<script>
+const cart = document.getElementById("cart");
+const input = document.getElementById("veggieInput");
+const btn = document.getElementById("addBtn");
+
+btn.addEventListener("click", () => {
+  const item = document.createElement("li");
+  item.textContent = input.value;
+  cart.appendChild(item);
+  input.value = "";
+});
+
+cart.addEventListener("dblclick", (e) => {
+  e.target.remove(); // remove vegetable on double-click
+});
+</script>
+</body>
+</html>
