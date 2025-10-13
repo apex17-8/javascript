@@ -13,4 +13,8 @@ INSERT INTO vegetables VALUES(4,'spinach');
 INSERT INTO vegetables VALUES(5,'lettuce');
 INSERT INTO vegetables VALUES(6,'potato');
 select *from vegetables;
-INSERT into vegetables 
+INSERT into vegetables ( color,price,taste) VALUES('green',20,'bitter');
+ALTER TABLE vegetables ADD color varchar(50);
+ALTER TABLE vegetables ADD price int;
+ALTER TABLE vegetables ADD taste varchar(50);
+alter TABLE vegetables modify id AUTO_INCREMENT;
