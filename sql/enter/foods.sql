@@ -77,3 +77,34 @@ WHERE name = 'spinach' AND id = 4;
 
 SELECT * FROM vegetables;
 
+SELECT name,color
+FROM vegetables
+ORDER BY price DESC;
+
+--count,sum avg,min,max
+SELECT name, AVG(price) AS average_price
+FROM vegetables
+GROUP BY name;
+--case
+--conditional statements
+--if condition then result
+SELECT name, price,
+    CASE
+        WHEN price < 20 THEN 'cheap'
+        WHEN price BETWEEN 20 AND 40 THEN 'moderate'
+        ELSE 'expensive'
+    END AS price_category
+FROM vegetables;
+--aggregate functions
+SELECT COUNT(*) AS total_vegetables,
+       SUM(price) AS total_price,
+       AVG(price) AS average_price,
+       MIN(price) AS minimum_price,
+       MAX(price) AS maximum_price
+FROM vegetables;
+
+--apply conditional logic using IF
+SELECT name, price,
+       IF(price < 20, 'cheap',
+          IF(price BETWEEN 20 AND 40, 'moderate', 'expensive')) AS price_category
+FROM vegetables;
