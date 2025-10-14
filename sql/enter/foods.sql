@@ -108,3 +108,67 @@ SELECT name, price,
        IF(price < 20, 'cheap',
           IF(price BETWEEN 20 AND 40, 'moderate', 'expensive')) AS price_category
 FROM vegetables;
+
+--pagination:means splitting large query results into smaller “pages".
+--It’s used when displaying results in parts — like showing 10 items per page in a web app
+--Pagination:Display limited rows per page
+SELECT *
+FROM vegetables
+ORDER BY id
+OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY; --get 10 rows,skip 0 rows
+
+--OFFSET/FETCH vs TOP PAGINATION
+--TOP:Limit total rows
+SELECT TOP 5 *
+FROM vegetables
+ORDER BY price DESC;
+--Returns only the first 5 rows.Can’t skip rows (no pagination)
+--Both limit the number of rows returned, but used differently
+
+SELECT name, price
+FROM vegetables
+ORDER BY price DESC;
+
+
+SELECT *
+FROM vegetables
+ORDER BY price DESC
+OFFSET 5 ROWS FETCH NEXT 5 ROWS ONLY;
+
+
+--ORDER BY :ORDER BY + INDEX:Sort data efficiently 
+--determines the sorting order of query results.
+SELECT *
+FROM vegetables
+ORDER BY price ASC;
+
+--limit /FETCH FIRST
+--Sorting (ORDER BY) can be slow for large tables.
+--Creating an index on the column being sorted speeds it up.
+
+CREATE INDEX idx_price ON vegetables(price);
+
+--order by and INDEXES
+--determines the sorting order of query results.
+SELECT *
+FROM vegetables
+ORDER BY price ASC;
+
+--triggers;Auto-run code on data changes
+--trigger is a special SQL procedure that runs automatically in response to certain events on a table (like INSERT, UPDATE, or DELETE).
+--log new vegetables when inserted
+CREATE TABLE veg_log (
+    veg_id INT,
+    name VARCHAR(50),
+    action_time DATETIME
+);
+
+CREATE TRIGGER trg_after_insert
+ON vegetables
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO veg_log (veg_id, name, action_time)
+    SELECT id, name, GETDATE()
+    FROM inserted;
+END;

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../SQL QUERIES"
+		},
+		{
+			"name": "enter",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "SQL QUERIES"
+	}
+}
