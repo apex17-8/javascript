@@ -44,4 +44,36 @@ where id=2;
 delete  from vegetables
 where id=10;
 
+SELECT * FROM vegetables;
+
+INSERT INTO vegetables (name,color,price,taste)
+VALUES('yams','brown',50,'bitter');
+
+SELECT * FROM vegetables;
+UPDATE vegetables
+SET price = 10
+WHERE id=2;
+SELECT * FROM vegetables;
+UPDATE vegetables
+SET taste='sweet'
+WHERE name='carrot;'
+
+SELECT * FROM vegetables;
+DELETE FROM vegetables
+WHERE id=9;
+
+select * from vegetables;
+UPDATE vegetables
+SET color ='green',price =10, taste='chicken'
+WHERE id=3 AND name ='broccoli';
+SELECT * FROM vegetables;
+
+INSERT INTO vegetables ( name, color, price, taste)
+VALUES ('spinach', 'green', 20, 'mild');
+SELECT *
+FROM vegetables
+WHERE name = 'spinach' AND id = 4;
+
+
+SELECT * FROM vegetables;
 
