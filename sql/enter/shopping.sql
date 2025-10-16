@@ -1,0 +1,4 @@
+--user defined functions
+--scalar functions
+--table valued functions: Multi-Statement Table-Valued Function, Inline Table-Valued Function
+--case defined functions

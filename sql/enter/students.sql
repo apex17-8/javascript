@@ -1,0 +1,5 @@
+--expressions and constraints
+--indexing: clustered and non-clustered
+-- set operators: unions and intersections and exceptions
+--commmon table expressions
+--custom directives
