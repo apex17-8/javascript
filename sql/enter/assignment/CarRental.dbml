@@ -1,0 +1,69 @@
+Table Car {
+  CarID int [pk]
+  CarModel varchar(100)
+  Manufacturer varchar(100)
+  Year int
+  Color varchar(50)
+  RentalRate decimal(10,2)
+  Availability bit
+  LocationID int [ref: > Location.LocationID]
+}
+
+Table Customer {
+  CustomerID int [pk]
+  FirstName varchar(50)
+  LastName varchar(50)
+  Email varchar(100)
+  PhoneNumber varchar(20)
+  Address varchar(255)
+}
+
+Table Rental {
+  RentalID int [pk]
+  CarID int [ref: > Car.CarID]
+  CustomerID int [ref: > Customer.CustomerID]
+  RentalStartDate date
+  RentalEndDate date
+  TotalAmount decimal(10,2)
+}
+
+Table Payment {
+  PaymentID int [pk]
+  RentalID int [ref: > Rental.RentalID]
+  PaymentDate date
+  Amount decimal(10,2)
+  PaymentMethod varchar(50)
+}
+
+Table Insurance {
+  InsuranceID int [pk]
+  CarID int [ref: > Car.CarID]
+  InsuranceProvider varchar(100)
+  PolicyNumber varchar(100)
+  StartDate date
+  EndDate date
+}
+
+Table Location {
+  LocationID int [pk]
+  LocationName varchar(100)
+  Address varchar(255)
+  ContactNumber varchar(20)
+}
+
+Table Reservation {
+  ReservationID int [pk]
+  CarID int [ref: > Car.CarID]
+  CustomerID int [ref: > Customer.CustomerID]
+  ReservationDate date
+  PickupDate date
+  ReturnDate date
+}
+
+Table Maintenance {
+  MaintenanceID int [pk]
+  CarID int [ref: > Car.CarID]
+  MaintenanceDate date
+  Description varchar(255)
+  Cost decimal(10,2)
+}

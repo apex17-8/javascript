@@ -229,9 +229,30 @@ FROM Customer C
 RIGHT JOIN Rental ON C.CustomerID = Rental.CustomerID;
 
 -- FULL JOIN
-SELECT C.FirstName, R.TotalAmount
+--SELECT C.FirstName, R.TotalAmount
+--FROM Customer C
+--FULL JOIN Rental R ON C.CustomerID = R.CustomerID;
+-- FULL JOIN alternative using UNION
+
+SELECT 
+    C.CustomerID,
+    C.FirstName,
+    R.RentalID,
+    R.TotalAmount
 FROM Customer C
-FULL JOIN Rental R ON C.CustomerID = R.CustomerID;
+LEFT JOIN Rental R 
+    ON C.CustomerID = R.CustomerID
+
+UNION
+
+SELECT 
+    C.CustomerID,
+    C.FirstName,
+    R.RentalID,
+    R.TotalAmount
+FROM Customer C
+RIGHT JOIN Rental R 
+    ON C.CustomerID = R.CustomerID;
 
 
 -- SUBQUERIES
