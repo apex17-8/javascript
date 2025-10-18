@@ -1,3 +1,9 @@
+--expressions and constraints
+--indexing: clustered and non-clustered
+-- set operators: unions and intersections and exceptions
+--commmon table expressions
+--custom directives
+
 CREATE TABLE graduates (
   grad_id INT PRIMARY KEY,
   name VARCHAR(50),
@@ -72,11 +78,103 @@ INSERT INTO graduate_employment VALUES
 (9,27,'Amazon',160000),
 (10,30,'Huawei',130000);
 
---inner join
+--expressions and constraints
+--1. Retrieve all graduates with a grade above 85.
+SELECT * FROM graduates WHERE grade > 85; 
+--2. Find the average grade of graduates in the Computer Science course.
+SELECT AVG(grade) AS avg_grade_cs FROM graduates WHERE course = 'Computer Science';
 
-SELECT g.name, e.company, e.salary
-FROM graduates g
-INNER JOIN graduate_employment e
-ON g.grad_id = e.grad_id;
+--3. List all female graduates who graduated in 2022.
+SELECT * FROM graduates WHERE gender =  'F' AND year_graduated = 2022;
+--4. Count the number of graduates in each course.
+SELECT course, COUNT(*) AS num_graduates FROM graduates GROUP BY course;    
+--5. Retrieve graduates with names starting with 'A'.
+SELECT * FROM graduates WHERE name LIKE 'A%';
+ 
+--indexing: clustered and non-clustered
+--1. Create a clustered index on the year_graduated column in the graduates table.
+CREATE INDEX idx_year_graduated ON graduates(year_graduated);
+--2. Create a non-clustered index on the course column in the graduates table.
+CREATE INDEX idx_course ON graduates(course);
+--3. Create a clustered index on the dept_name column in the departments table.
+CREATE INDEX idx_dept_name ON departments(dept_name);
+
+--combbine with expressions and constraints
+--4. Retrieve all graduates who graduated in 2022 and have a grade above 80, using the clustered index.
+SELECT * FROM graduates WHERE year_graduated = 2022 AND grade > 80;
+--5. Find the average grade of graduates in the Computer Science course, using the non-clustered index.
+SELECT AVG(grade) AS avg_grade_cs FROM graduates WHERE course = 'Computer Science';
+--6. List all female graduates who graduated in 2022, using the clustered index.
+SELECT * FROM graduates WHERE gender = 'F' AND year_graduated = 2022;
+--7. Count the number of graduates in each course, using the non-clustered index
+SELECT course, COUNT(*) AS num_graduates FROM graduates GROUP BY course;
 
 
+-- set operators: unions and intersections and exceptions
+--1. Retrieve all graduates who graduated in 2022 or have a grade above 85.
+SELECT * FROM graduates WHERE year_graduated = 2022 OR grade > 85;
+--2. Find the average grade of graduates in the Computer Science course or in the Economics course.
+SELECT AVG(grade) AS avg_grade FROM graduates WHERE course = 'Computer Science' OR course = 'Economics';
+--3. List all female graduates who graduated in 2022 or have a grade above 80.
+SELECT * FROM graduates WHERE gender = 'F' AND (year_graduated = 2022 OR grade > 80);
+--4. Count the number of graduates in each course, using the non-clustered index.
+SELECT course, COUNT(*) AS num_graduates FROM graduates GROUP BY course;
+
+--unions
+--5. Retrieve all graduates who graduated in 2022 and all graduates with a grade above 85.
+SELECT * FROM graduates WHERE year_graduated = 2022 UNION SELECT * FROM graduates WHERE grade > 85; 
+--6. Find the average grade of graduates in the Computer Science course and all graduates in the Economics course.
+SELECT AVG(grade) AS avg_grade FROM graduates WHERE course = 'Computer Science' UNION SELECT AVG(grade) AS avg_grade FROM graduates WHERE course = 'Econom
+ics';
+--7. List all female  graduates who graduated in 2022 and all graduates with a grade above 80.
+SELECT * FROM graduates WHERE gender = 'F' AND year_graduated = 2022 UNION SELECT * FROM graduates WHERE grade > 80;
+
+--intersections
+--8. Retrieve all graduates who graduated in 2022 and have a grade above 85.
+SELECT * FROM graduates WHERE year_graduated = 2022 INTERSECT SELECT * FROM graduates WHERE grade > 85;
+--9. Find the average grade of graduates in the Computer Science course and in the Economics course.
+SELECT AVG(grade) AS avg_grade FROM graduates WHERE course = 'Computer Science' INTERSECT SELECT AVG(grade) AS avg_grade FROM graduates WHERE course = 'Economics';
+--10. List all female graduates who graduated in 2022 and have a grade above 80.
+SELECT * FROM graduates WHERE gender = 'F' AND year_graduated = 2022 INTERSECT SELECT * FROM graduates WHERE grade > 80;
+
+--exceptions
+--11. Retrieve all graduates who graduated in 2022 but do not have a grade above 85.
+SELECT * FROM graduates WHERE year_graduated = 2022 EXCEPT SELECT * FROM graduates WHERE grade > 85;
+--12. Find the average grade of graduates in the Computer Science course but not in the Economics course.
+SELECT AVG(grade) AS avg_grade FROM graduates WHERE course = 'Computer Science' EXCEPT SELECT AVG(grade) AS avg_grade FROM graduates WHERE course = 'Economics';
+--13. List all female graduates who graduated in 2022 but do not have a grade above 80.
+SELECT * FROM graduates WHERE gender = 'F' AND year_graduated = 2022 EXCEPT SELECT * FROM graduates WHERE grade > 80;
+--14. Count the number of graduates in each course, using the non-clustered index.
+SELECT course, COUNT(*) AS num_graduates FROM graduates GROUP BY course;
+
+
+--common table expressions
+--1. Retrieve all graduates with a grade above 85.
+WITH graduates_above_85 AS (SELECT * FROM graduates WHERE grade > 85)
+SELECT * FROM graduates_above_85;
+--2. Find the average grade of graduates in the Computer Science course.
+WITH cs_graduates AS (SELECT * FROM graduates WHERE course = 'Computer Science')
+SELECT AVG(grade) AS avg_grade_cs FROM cs_graduates;
+--3. List all female graduates who graduated in 2022.
+WITH female_graduates AS (SELECT * FROM graduates WHERE gender = 'F' AND year_graduated = 2022)
+SELECT * FROM female_graduates;
+--4. Count the number of graduates in each course.
+WITH course_counts AS (SELECT course, COUNT(*) AS num_graduates FROM graduates GROUP BY course)
+SELECT * FROM course_counts;
+
+--custom directives
+--1. Retrieve all graduates with a grade above 85.
+/*+ INDEX(graduates idx_course) */ 
+SELECT * FROM graduates WHERE grade > 85; 
+--2. Find the average grade of graduates in the Computer Science course.
+/*+ INDEX(graduates idx_course) */
+SELECT  AVG(grade) AS avg_grade_cs FROM graduates WHERE course = 'Computer Science';
+--3. List all female graduates who graduated in 2022.
+/*+ INDEX(graduates idx_year_graduated) */
+SELECT * FROM graduates WHERE gender = 'F' AND year_graduated = 2022;
+--4. Count the number of graduates in each course.
+/*+ INDEX(graduates idx_course) */
+SELECT course, COUNT(*) AS num_graduates FROM graduates GROUP BY course;
+--5. Retrieve all graduates who graduated in 2022 and have a grade above 80, using the clustered index.
+/*+ INDEX(graduates idx_year_graduated) */
+SELECT * FROM graduates WHERE year_graduated = 2022 AND grade > 80;
