@@ -43,13 +43,14 @@
     <button onclick="filterCategory('Fruit')">Fruits</button>
     <button onclick="filterCategory('Veg')">Vegetables</button>
     <button onclick="sortItems()">Sort A-Z</button>
+    <button onmouseover="CSSAnimation()">Hover Me</button>
     
   </div>
 
   <div class="grid" id="grid"></div>
 
   <script>
-    // Array of objects (practice array methods here)
+    // Array of objects (array methods)
     const items = [
       { name: "Apple", category: "Fruit" },
       { name: "Carrot", category: "Veg" },
@@ -84,6 +85,9 @@
     function sortItems() {
       currentItems = [...currentItems].sort((a, b) => a.name.localeCompare(b.name));
       renderGrid(currentItems);
+    }
+    function CSSAnimation() {
+      alert("Button hovered!add CSS animations here.");
     }
 
     // Initial render

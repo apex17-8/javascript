@@ -8,12 +8,19 @@
 <body>
 <h2>Vegetable Inventory</h2>
 <p id="info"></p>
-
+<div>
+  <h3>Veggie List:</h3>
+  <ul id="veggie-list"></ul>
 <script>
 const veggies = [
   { name: "Tomato", stock: 20 },
   { name: "Onion", stock: 15 },
-  { name: "Carrot", stock: 10 }
+  { name: "Carrot", stock: 10 },
+  { name: "Cabbage", stock: 5 },
+  { name: "Spinach", stock: 8 },
+  { name: "Potato", stock: 25 },
+  { name: "Pepper", stock: 12 }
+
 ];
 
 // Object & Array
@@ -23,13 +30,18 @@ const firstVeggie = veggies[0].name;
 const date = new Date();
 
 // Set (unique)
-const veggieSet = new Set(["Tomato", "Carrot", "Tomato"]);
+const veggieSet = new Set(["Tomato", "Carrot", "Onion", "Carrot", "Cabbage", "Spinach", "Potato", "Pepper"]);
 
 // Map (key-value)
 const prices = new Map([
   ["Tomato", 80],
   ["Carrot", 60],
   ["Onion", 70]
+  ["Carrot", 60],
+  ["Cabbage", 50],
+  ["Spinach", 40],
+  ["Potato", 90],
+  ["Pepper", 100]
 ]);
 
 document.getElementById("info").innerHTML = `
@@ -39,6 +51,7 @@ document.getElementById("info").innerHTML = `
   Unique veggies: ${[...veggieSet].join(", ")}<br>
   Tomato price: ${prices.get("Tomato")} KES
 `;
+
 </script>
 </body>
 </html>

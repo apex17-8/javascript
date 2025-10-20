@@ -1,4 +1,4 @@
-// save as veggies.ts and compile with tsc veggies.ts
+// compillation (tsc veggies.ts)
 let veggieName: string = "Spinach";
 let price: number = 120;
 let inStock: boolean = true;

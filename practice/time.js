@@ -28,8 +28,8 @@ function square(num) {
 }
 console.log(square(5));
 
-function sum(addition){
-    return addition + addition;
+function sum(a,b){
+    return a + b;
 }
 //control flow statement
 //if statement

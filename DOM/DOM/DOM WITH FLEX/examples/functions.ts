@@ -8,7 +8,7 @@ function showPrice(item: Veggie | string) {
   else console.log(`${item.name} costs KES ${item.price}`);
 }
 
-// async/await example
+// async/await function to simulate fetching veggies
 async function fetchVeggies(): Promise<Veggie[]> {
   return new Promise(resolve =>
     setTimeout(() => resolve([

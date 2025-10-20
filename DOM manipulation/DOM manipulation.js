@@ -5,7 +5,7 @@ const vegetables = [
       description: `" Green when fresh,and yellowish when stale"`,
       healthy_benefits: "increases blood circulation", 
       unhealthy_benefits: "increases blood pressure",
-    }
+    },
     {
       name: "Roronoa Zoro",
       image: "https://tse2.mm.bing.net/th/id/OIP.DJpNZhCU9cJfRWOFCJ6S7AHaEK?rs=1&pid=ImgDetMain",
